@@ -13,7 +13,7 @@ int main(int argc, char const *argv[]) {
 	output.open("input_file.txt");
 	cout << "Enter number of nodes: ";
 	cin >> num_nodes;
-	cout << "Random? (1 for yes, 0 for no) ";
+	cout << "Random? (0 for yes, 1 for no) ";
 	cin >> choice;
 	cout << "Enter lower range for values (inclusive): ";
 	cin >> low_range;
