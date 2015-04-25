@@ -6,8 +6,6 @@
 using namespace std;
 
 int main(int argc, char * argv[]){
-	BinarySearchTree bst;
-	bst.insert(10);
 	if(argc != 2){
 		cout << "USAGE ./trees <input-file>" << endl;
 	}
