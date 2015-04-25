@@ -13,7 +13,22 @@ void RedBlackTree::leftRotate(Node *x){
 
 }
 void RedBlackTree::rightRotate(Node *y){
-
+	Node *x = y->left; 	
+	y->left = x->right;
+	if (x->right != sentinel) {
+		(x->right)->parent = y;
+	}
+	x->parent = y->parent;
+	if (y->parent == sentinel) {
+		root = x;
+	} if else (y == (y->parent)->right) {
+		(y->p)->right = x;
+	} else {
+		(y->parent)->left = x;
+	}
+	x->right = y;
+	y->parent = x;
+	
 }
 void RedBlackTree::RB_fixup(Node *z){
 
