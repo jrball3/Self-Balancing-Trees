@@ -28,9 +28,6 @@ void RedBlackTree::leftRotate(Node* x){
 	y->left = x;
 	x->parent = y;
 }
-void RedBlackTree::rightRotate(Node* y){
-
-}
 void RedBlackTree::rightRotate(Node *y){
 	Node *x = y->left; 	
 	y->left = x->right;
@@ -40,8 +37,8 @@ void RedBlackTree::rightRotate(Node *y){
 	x->parent = y->parent;
 	if (y->parent == sentinel) {
 		root = x;
-	} if else (y == (y->parent)->right) {
-		(y->p)->right = x;
+	} else if (y == y->parent->right) {
+		y->parent->right = x;
 	} else {
 		(y->parent)->left = x;
 	}

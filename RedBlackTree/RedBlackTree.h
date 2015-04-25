@@ -3,7 +3,7 @@
 #define RED 1
 #define BLACK 2
 
-class BinarySearchTree{
+class RedBlackTree{
 	private:
 		Node * root;
 		Node * sentinel;
@@ -14,4 +14,5 @@ class BinarySearchTree{
 		void rightRotate(Node * y);
 		void RB_fixup(Node * z);
 		void printContents();
+		RedBlackTree();
 };

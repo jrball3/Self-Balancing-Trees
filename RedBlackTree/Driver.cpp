@@ -15,13 +15,13 @@ int main(int argc, char * argv[]){
 	string file(argv[1]);
 	ifstream infile(file);	
 	string line;
-	BinarySearchTree BST;
+	RedBlackTree RBT;
 	while(getline(infile, line)){
 		stringstream ss(line);
 		int input;
 		ss >> input;
-		BST.insertNode(input);		
+		RBT.insertNode(input);		
 	}
-	BST.printContents();
+	RBT.printContents();
 	return EXIT_SUCCESS;
 }
