@@ -2,7 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "RedBlackTree.h"
+#include "BinarySearchTree.h"
 
 using namespace std;
 
@@ -15,13 +15,13 @@ int main(int argc, char * argv[]){
 	string file(argv[1]);
 	ifstream infile(file);	
 	string line;
-	RedBlackTree RBT;
+	BinarySearchTree BST;
 	while(getline(infile, line)){
 		stringstream ss(line);
 		int input;
 		ss >> input;
-		RBT.insertNode(input);		
+		BST.insertNode(input);		
 	}
-	RBT.printContents();
+	BST.printContents();
 	return EXIT_SUCCESS;
 }

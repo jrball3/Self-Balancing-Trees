@@ -9,11 +9,42 @@ RedBlackTree::RedBlackTree(){
 	sentinel->right = nullptr;
 	sentinel->color = BLACK;	
 }
-void RedBlackTree::leftRotate(Node *x){
-
+void RedBlackTree::leftRotate(Node* x){
+	Node * y = x->right;
+	x->right = y->left;
+	if(y->left != sentinel){
+		y->left->parent = x;
+	}
+	y->parent = x->parent;
+	if(x->parent == sentinel){
+		root = y;
+	}
+	else if(x == x->parent->left){
+		x->parent->left =y;
+	}
+	else{
+		x->parent->right = y;
+	}
+	y->left = x;
+	x->parent = y;
 }
 void RedBlackTree::rightRotate(Node *y){
-
+	Node *x = y->left; 	
+	y->left = x->right;
+	if (x->right != sentinel) {
+		(x->right)->parent = y;
+	}
+	x->parent = y->parent;
+	if (y->parent == sentinel) {
+		root = x;
+	} else if (y == y->parent->right) {
+		y->parent->right = x;
+	} else {
+		(y->parent)->left = x;
+	}
+	x->right = y;
+	y->parent = x;
+	
 }
 void RedBlackTree::RB_fixup(Node *z){
 	while(z->parent->color == RED){
