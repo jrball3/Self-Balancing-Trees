@@ -9,10 +9,18 @@ RedBlackTree::RedBlackTree(){
 	sentinel->right = nullptr;
 	sentinel->color = BLACK;	
 }
+void RedBlackTree::leftRotate(Node *x){
+
+}
+void RedBlackTree::rightRotate(Node *y){
+
+}
+void RedBlackTree::RB_fixup(Node *z){
+
+}
 void RedBlackTree::insertNode(int key){
 	
 }
-
 Node * RedBlackTree::search(int key){
 	Node * n = root;
 
