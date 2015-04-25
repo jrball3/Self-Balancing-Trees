@@ -16,8 +16,47 @@ void RedBlackTree::rightRotate(Node *y){
 
 }
 void RedBlackTree::RB_fixup(Node *z){
-
+	while(z->parent->color == RED){
+		if(z->p == z->p->p->left){
+			Node * y = z->p->p->right;
+			if(y->color == RED){
+				z->p->color = BLACK;
+				y->color = BLACK;
+				z->p->p->color = RED;
+				z = z->p->p
+			}
+			else{
+				if(z == z->p->right){
+					z = z->p;
+					leftRotate(z);
+				}
+				z->p->color = BLACK;
+				z->p->p->color = RED:
+				rightRotate(z->p->p);
+			}
+		}
+		else{
+			Node * y = z->p->p->left;
+			if(y->color == RED){
+				z->p->color = BLACK;
+				y->color = BLACK;
+				z->p->p->color = RED;
+				z = z->p->p;
+			}
+			else{
+				if(z == z->p->right){
+					z = z->p;
+					rightRotate(z);
+				}
+				z->p->color = BLACK;
+				z->p->p->color = RED;
+				leftRotate(z->p->p);
+			}
+		}
+	}
+	root->color = BLACK;
 }
+
 void RedBlackTree::insertNode(int key){
 	
 }
