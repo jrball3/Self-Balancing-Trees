@@ -1,6 +1,6 @@
 #include "BinarySearchTree.h"
 
-void insertNode(int key){
+void BinarySearchTree::insertNode(int key){
 	Node * n = new Node();
 	n.key = key;
 	
@@ -28,7 +28,7 @@ void insertNode(int key){
 	}
 }
 
-Node * search(int key){
+Node * BinarySearchTree::search(int key){
 	Node * n = root;
 
 	while(n != nullptr && key != n.key){
@@ -42,3 +42,16 @@ Node * search(int key){
 	
 	return n;
 }
+
+void inorderTreeWalk(Node * x){
+	if(x != nullptr){
+		inorderTreeWalk(x.left);
+		cout << x.key << " ";
+		inorderTreeWalk(x.right);
+	}
+}
+
+void BinarySearchTree::printContents(){
+	inorder_tree_walk(root);
+	cout << endl;	
+} 

@@ -7,4 +7,5 @@ class BinarySearchTree{
 	public:
 		void insertNode(int key);
 		Node * search(int key);
+		void printContents();
 };
