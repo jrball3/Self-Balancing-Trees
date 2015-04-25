@@ -9,13 +9,29 @@ RedBlackTree::RedBlackTree(){
 	sentinel->right = nullptr;
 	sentinel->color = BLACK;	
 }
-void RedBlackTree::leftRotate(Node *x){
+void RedBlackTree::leftRotate(Node* x){
+	Node * y = x->right;
+	x->right = y->left;
+	if(y->left != sentinel){
+		y->left->parent = x;
+	}
+	y->parent = x->parent;
+	if(x->parent == sentinel){
+		root = y;
+	}
+	else if(x == x->parent->left){
+		x->parent->left =y;
+	}
+	else{
+		x->parent->right = y;
+	}
+	y->left = x;
+	x->parent = y;
+}
+void RedBlackTree::rightRotate(Node* y){
 
 }
-void RedBlackTree::rightRotate(Node *y){
-
-}
-void RedBlackTree::RB_fixup(Node *z){
+void RedBlackTree::RB_fixup(Node* z){
 
 }
 void RedBlackTree::insertNode(int key){
