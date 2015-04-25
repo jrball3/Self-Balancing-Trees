@@ -1,5 +1,5 @@
 p = trees
-c = g++ -std=c++0x
+c = g++ -std=c++11
 f = -g
 
 all: Driver.o BinarySearchTree.o

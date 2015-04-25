@@ -1,6 +1,10 @@
 #include "BinarySearchTree.h"
 #include <iostream>
 
+BinarySearchTree::BinarySearchTree(){
+	root = nullptr;
+}
+
 void BinarySearchTree::insertNode(int key){
 	Node * n = new Node();
 	n->key = key;

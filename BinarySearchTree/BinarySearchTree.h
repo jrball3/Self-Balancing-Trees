@@ -8,4 +8,5 @@ class BinarySearchTree{
 		void insertNode(int key);
 		Node * search(int key);
 		void printContents();
+		BinarySearchTree();
 };
