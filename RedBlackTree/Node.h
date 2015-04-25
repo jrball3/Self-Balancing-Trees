@@ -3,6 +3,6 @@ class Node{
 		int key;
 		Node * left;
 		Node * right;
-		Node * parent;
+		Node * p;
 		int color;
 };

@@ -13,48 +13,48 @@ void RedBlackTree::leftRotate(Node* x){
 	Node * y = x->right;
 	x->right = y->left;
 	if(y->left != sentinel){
-		y->left->parent = x;
+		y->left->p = x;
 	}
-	y->parent = x->parent;
-	if(x->parent == sentinel){
+	y->p = x->p;
+	if(x->p == sentinel){
 		root = y;
 	}
-	else if(x == x->parent->left){
-		x->parent->left =y;
+	else if(x == x->p->left){
+		x->p->left =y;
 	}
 	else{
-		x->parent->right = y;
+		x->p->right = y;
 	}
 	y->left = x;
-	x->parent = y;
+	x->p = y;
 }
 void RedBlackTree::rightRotate(Node *y){
 	Node *x = y->left; 	
 	y->left = x->right;
 	if (x->right != sentinel) {
-		(x->right)->parent = y;
+		(x->right)->p = y;
 	}
-	x->parent = y->parent;
-	if (y->parent == sentinel) {
+	x->p = y->p;
+	if (y->p == sentinel) {
 		root = x;
-	} else if (y == y->parent->right) {
-		y->parent->right = x;
+	} else if (y == y->p->right) {
+		y->p->right = x;
 	} else {
-		(y->parent)->left = x;
+		(y->p)->left = x;
 	}
 	x->right = y;
-	y->parent = x;
+	y->p = x;
 	
 }
 void RedBlackTree::RB_fixup(Node *z){
-	while(z->parent->color == RED){
+	while(z->p->color == RED){
 		if(z->p == z->p->p->left){
 			Node * y = z->p->p->right;
 			if(y->color == RED){
 				z->p->color = BLACK;
 				y->color = BLACK;
 				z->p->p->color = RED;
-				z = z->p->p
+				z = z->p->p;
 			}
 			else{
 				if(z == z->p->right){
@@ -62,7 +62,7 @@ void RedBlackTree::RB_fixup(Node *z){
 					leftRotate(z);
 				}
 				z->p->color = BLACK;
-				z->p->p->color = RED:
+				z->p->p->color = RED;
 				rightRotate(z->p->p);
 			}
 		}
@@ -89,7 +89,33 @@ void RedBlackTree::RB_fixup(Node *z){
 }
 
 void RedBlackTree::insertNode(int key){
-	
+	Node * y = sentinel;
+	Node * x = root;
+	Node * z = new Node();
+	z->key = key;
+	while(x != sentinel){
+		y = x;
+		if(z->key < x->key){
+			x = x->left;
+		}
+		else{
+			x = x->right;
+		}
+	}
+	z->p = y;
+	if(y == sentinel){
+		root = z;
+	}
+	else if(z->key < y->key){
+		y->left = z;
+	}
+	else{
+		y->right = z;
+	}
+	z->left = sentinel;
+	z->right = sentinel;
+	z->color = RED;
+	RB_fixup(z);
 }
 Node * RedBlackTree::search(int key){
 	Node * n = root;
