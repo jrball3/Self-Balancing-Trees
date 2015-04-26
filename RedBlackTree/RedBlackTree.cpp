@@ -3,11 +3,11 @@
 using namespace std;
 
 RedBlackTree::RedBlackTree(){
-	root = nullptr;
 	sentinel = new Node();
 	sentinel->left = nullptr;
 	sentinel->right = nullptr;
 	sentinel->color = BLACK;	
+	root = sentinel;
 }
 void RedBlackTree::leftRotate(Node* x){
 	Node * y = x->right;
@@ -28,23 +28,24 @@ void RedBlackTree::leftRotate(Node* x){
 	y->left = x;
 	x->p = y;
 }
-void RedBlackTree::rightRotate(Node *y){
-	Node *x = y->left; 	
-	y->left = x->right;
-	if (x->right != sentinel) {
-		(x->right)->p = y;
+void RedBlackTree::rightRotate(Node *x){
+	Node * y = x->left;
+	x->left = y->right;
+	if(y->right != sentinel){
+		y->right->p = x;
 	}
-	x->p = y->p;
-	if (y->p == sentinel) {
-		root = x;
-	} else if (y == y->p->right) {
-		y->p->right = x;
-	} else {
-		(y->p)->left = x;
+	y->p = x->p;
+	if(x->p == sentinel){
+		root = y;
 	}
-	x->right = y;
-	y->p = x;
-	
+	else if(x == x->p->right){
+		x->p->right =y;
+	}
+	else{
+		x->p->left = y;
+	}
+	y->right = x;
+	x->p = y;
 }
 void RedBlackTree::RB_fixup(Node *z){
 	while(z->p->color == RED){
@@ -75,7 +76,7 @@ void RedBlackTree::RB_fixup(Node *z){
 				z = z->p->p;
 			}
 			else{
-				if(z == z->p->right){
+				if(z == z->p->left){
 					z = z->p;
 					rightRotate(z);
 				}
