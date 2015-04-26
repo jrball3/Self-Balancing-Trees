@@ -1,13 +1,15 @@
 #include "RedBlackTree.h"
 #include <iostream>
+#include <climits>
 using namespace std;
 
 RedBlackTree::RedBlackTree(){
-	root = nullptr;
 	sentinel = new Node();
+	root = sentinel;
 	sentinel->left = nullptr;
 	sentinel->right = nullptr;
 	sentinel->color = BLACK;	
+	sentinel->key = INT_MAX;
 }
 void RedBlackTree::leftRotate(Node* x){
 	Node * y = x->right;
@@ -40,7 +42,7 @@ void RedBlackTree::rightRotate(Node *y){
 	} else if (y == y->p->right) {
 		y->p->right = x;
 	} else {
-		(y->p)->left = x;
+		y->p->left = x;
 	}
 	x->right = y;
 	y->p = x;
@@ -75,7 +77,7 @@ void RedBlackTree::RB_fixup(Node *z){
 				z = z->p->p;
 			}
 			else{
-				if(z == z->p->right){
+				if(z == z->p->left){
 					z = z->p;
 					rightRotate(z);
 				}
@@ -135,7 +137,9 @@ Node * RedBlackTree::search(int key){
 void inorderTreeWalk(Node * x){
 	if(x != nullptr){
 		inorderTreeWalk(x->left);
-		std::cout << x->key << " ";
+		if(x->key != INT_MAX){
+			std::cout << x->key << " ";
+		}
 		inorderTreeWalk(x->right);
 	}
 }
@@ -144,3 +148,4 @@ void RedBlackTree::printContents(){
 	inorderTreeWalk(root);
 	std::cout << std::endl;	
 } 
+
