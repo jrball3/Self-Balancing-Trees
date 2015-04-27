@@ -8,5 +8,7 @@ class AVLTree{
 		void insertNode(int key);
 		Node * search(int key);
 		void printContents();
+		void leftRotate(Node * x);
+		void rightRotate(Node * x);
 		AVLTree();
 };
