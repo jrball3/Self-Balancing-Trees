@@ -9,10 +9,6 @@ class AVLTree{
 		Node * search(int key);
 		void printContents();
 		AVLTree();
-<<<<<<< HEAD
-		void height(Node * n);
 		Node * getRoot();
-=======
-		std::pair<int,int> height(Node * n, int l_height, int r_height);
->>>>>>> origin/master
+		std::pair<int,int> height(Node * n, int l_height, int r_height);r
 };
