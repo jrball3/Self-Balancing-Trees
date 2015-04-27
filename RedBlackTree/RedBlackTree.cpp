@@ -5,7 +5,6 @@ using namespace std;
 
 RedBlackTree::RedBlackTree(){
 	sentinel = new Node();
-	root = sentinel;
 	sentinel->left = nullptr;
 	sentinel->right = nullptr;
 	sentinel->color = BLACK;	
