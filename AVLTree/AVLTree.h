@@ -9,4 +9,5 @@ class AVLTree{
 		void printContents();
 		AVLTree();
 		void height(Node * n);
+		Node * getRoot();
 };

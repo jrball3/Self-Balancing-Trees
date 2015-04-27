@@ -1,6 +1,7 @@
-#include <iostream>
+#include <cstdlib>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include <string>
 #include "AVLTree.h"
 
@@ -23,5 +24,7 @@ int main(int argc, char * argv[]){
 		AVL.insertNode(input);		
 	}
 	AVL.printContents();
+	AVL.height(AVL.getRoot());
+	cout << "The balance factor of the tree is " << AVL.getRoot()->balance_factor << endl;
 	return EXIT_SUCCESS;
 }
