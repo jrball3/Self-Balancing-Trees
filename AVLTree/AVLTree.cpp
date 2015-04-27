@@ -54,7 +54,11 @@ std::pair<int,int> AVLTree::height(Node * n, int l_height, int r_height){
 		n->balance_factor = 0;
 		return std::pair<int,int>(l_height, r_height);
 	}
-	
+	n->right_height = r_height;
+	n->left_height = l_height;
+	n->balance_factor = l_height - r_height;
+	// Negative balance factor > 1 is too high on the right
+	// Positive balance factor > 1 is too high on the left
 	return std::pair<int,int>(l_height, r_height);
 }
 

@@ -10,5 +10,5 @@ class AVLTree{
 		void printContents();
 		AVLTree();
 		Node * getRoot();
-		std::pair<int,int> height(Node * n, int l_height, int r_height);r
+		std::pair<int,int> height(Node * n, int l_height, int r_height);
 };

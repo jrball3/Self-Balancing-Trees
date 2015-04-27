@@ -24,7 +24,7 @@ int main(int argc, char * argv[]){
 		AVL.insertNode(input);		
 	}
 	AVL.printContents();
-	AVL.height(AVL.getRoot());
+	AVL.height(AVL.getRoot(), 0, 0);
 	cout << "The balance factor of the tree is " << AVL.getRoot()->balance_factor << endl;
 	return EXIT_SUCCESS;
 }
