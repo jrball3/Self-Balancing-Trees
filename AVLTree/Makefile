@@ -9,7 +9,7 @@ Driver.o: Driver.cpp
 	$c $f -c Driver.cpp
 
 AVLTree.o: AVLTree.cpp
-	$c $f -c AVL.cpp
+	$c $f -c AVLTree.cpp
 
 clean: 
 	rm *.o $p
