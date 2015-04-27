@@ -5,10 +5,29 @@ AVLTree::AVLTree(){
 	root = nullptr;
 }
 
-void AVL::insertNode(int key){
+void AVLTree::insertNode(int key){
 	
 }
-
+void AVLTree::height(Node * n){
+	Node * left_tree = n;	
+	Node * right_tree = n;
+	if(left_tree->left != nullptr){
+		left_tree->left_height++;
+		height(left_tree->left);
+	}
+	else if(right_tree->right != nullptr){
+		right_tree->right_height++;
+		height(right_tree->right);			
+	}
+	else{
+		n->left_height = 0;
+		n->right_height = 0;
+		n->balance_factor = 0;
+		return;
+	}
+	
+	return;
+}
 Node * AVLTree::search(int key){
 	Node * n = root;
 
