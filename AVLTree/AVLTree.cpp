@@ -37,18 +37,16 @@ void AVLTree::insertNode(int key){
 	}
 }
 
-std::pair<int,int> AVLTree::height(Node * n, int l_height, int r_height){
-	Node * left_tree = n;	
-	Node * right_tree = n;
-	if(left_tree->left != nullptr){
+std::pair<int,int> AVLTree::height(Node * n, int l_height, int r_height){	
+	if(n->left != nullptr){
 		l_height++;
-		l_height = height(left_tree->left, l_height, r_height).first;
+		l_height = height(n->left, l_height, r_height).first;
 	}
-	else if(right_tree->right != nullptr){
+	if(n->right != nullptr){
 		r_height++;
-		r_height = height(right_tree->right, l_height, r_height).second;			
+		r_height = height(n->right, l_height, r_height).second;			
 	}
-	else{
+	if(n->right == nullptr && n->left == nullptr){
 		n->left_height = 0;
 		n->right_height = 0;
 		n->balance_factor = 0;

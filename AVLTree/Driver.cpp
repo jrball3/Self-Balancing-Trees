@@ -25,6 +25,8 @@ int main(int argc, char * argv[]){
 	}
 	AVL.printContents();
 	AVL.height(AVL.getRoot(), 0, 0);
-	cout << "The balance factor of the tree is " << AVL.getRoot()->balance_factor << endl;
+	cout << "The balance factor from the root is " << AVL.getRoot()->balance_factor << endl;
+	cout << "The left height from the root is " << AVL.getRoot()->left_height << endl;
+	cout << "The right height from the root is " << AVL.getRoot()->right_height << endl;
 	return EXIT_SUCCESS;
 }
