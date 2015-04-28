@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char * argv[]){
 	if(argc != 2){
 		cout << "USAGE ./trees <input-file>" << endl;
-		exit(1);
+		return 1;
 	}
 	
 	string file(argv[1]);
@@ -23,5 +23,5 @@ int main(int argc, char * argv[]){
 		RBT.insertNode(input);		
 	}
 	RBT.printContents();
-	return EXIT_SUCCESS;
+	return 0;
 }

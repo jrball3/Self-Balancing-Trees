@@ -7,4 +7,7 @@ class Node{
 		int balance_factor;
 		int left_height;
 		int right_height;
+		int height;
+		Node(int k):
+			key(k){}
 };
