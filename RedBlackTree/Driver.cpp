@@ -19,8 +19,9 @@ int main(int argc, char * argv[]){
 	while(getline(infile, line)){
 		stringstream ss(line);
 		int input;
-		ss >> input;
-		RBT.insertNode(input);		
+		ss >> input;	
+		RBT.insertNode(input);
+		cout << input << endl;		
 	}
 	RBT.printContents();
 	return 0;

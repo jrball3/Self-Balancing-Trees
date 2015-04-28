@@ -22,7 +22,7 @@ void RedBlackTree::leftRotate(Node* x){
 		root = y;
 	}
 	else if(x == x->p->left){
-		x->p->left =y;
+		x->p->left = y;
 	}
 	else{
 		x->p->right = y;
@@ -36,26 +36,18 @@ void RedBlackTree::rightRotate(Node *x){
 	if(y->right != sentinel){
 		y->right->p = x;
 	}
-	x->p = y->p;
-	if (y->p == sentinel) {
+	y->p = x->p;
+	if (x->p == sentinel) {
 		root = x;
-	} else if (y == y->p->right) {
-		y->p->right = x;
-	} else {
-		y->p->left = x;
-		y->p = x->p;
-		if(x->p == sentinel){
-			root = y;
-		}
-		else if(x == x->p->right){
-			x->p->right =y;
-		}
-		else{
-			x->p->left = y;
-		}
-		y->right = x;
-		x->p = y;
-	}
+	} 
+	else if (x == x->p->right) {
+		x->p->right = y;
+	} 
+	else {
+		x->p->left = y;
+	}	
+	y->right = x;
+	x->p = y;
 }
 void RedBlackTree::RB_fixup(Node *z){
 	while(z->p->color == RED){

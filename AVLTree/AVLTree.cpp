@@ -239,60 +239,54 @@ void AVLTree::printContents(){
 // Working left rotate
 Node * AVLTree::leftRotate(Node* x){
 	Node * y = x->right;
-	if(x->right != nullptr){
-		x->right = y->left;
-		if(y->left != nullptr){
-			y->left->p = x;
-		}
-		y->p = x->p;
-		if(x->p == nullptr){
-			root = y;
-		}
-		else if(x == x->p->left){
-			x->p->left =y;
-		}
-		else{
-			x->p->right = y;
-		}
-		y->left = x;
-		x->p = y;
-
-		// Update the node values
-		x->height = max(getHeight(x->left), getHeight(x->right)) + 1;
-		y->height = max(getHeight(y->right), x->height) + 1;
-		return y;
+	x->right = y->left;
+	if(y->left != nullptr){
+		y->left->p = x;
 	}
-	return x;
+	y->p = x->p;
+	if(x->p == nullptr){
+		root = y;
+	}
+	else if(x == x->p->left){
+		x->p->left =y;
+	}
+	else{
+		x->p->right = y;
+	}
+	y->left = x;
+	x->p = y;
+
+	// Update the node values
+	x->height = max(getHeight(x->left), getHeight(x->right)) + 1;
+	y->height = max(getHeight(y->right), x->height) + 1;
+	return y;
 }
 
 // Working right rotate
 Node * AVLTree::rightRotate(Node* x){
 	Node * y = x->left;
-	if(x->left != nullptr){
-		x->left = y->right;
-		if(y->right != nullptr){
-			y->right->p = x;
-		}
-		y->p = x->p;
-		if(x->p == nullptr){
-			root = y;
-		}
-		else if(x == x->p->right){
-			x->p->right =y;
-		}
-		else{
-			x->p->left = y;
-		}
-		y->right = x;
-		x->p = y;
-
-		// Update the node values
-		y->height = max(getHeight(y->left), getHeight(y->right)) + 1;
-		x->height = max(getHeight(x->left), y->height) + 1;
-
-		return y;
+	x->left = y->right;
+	if(y->right != nullptr){
+		y->right->p = x;
 	}
-	return x;
+	y->p = x->p;
+	if(x->p == nullptr){
+		root = y;
+	}
+	else if(x == x->p->right){
+		x->p->right =y;
+	}
+	else{
+		x->p->left = y;
+	}
+	y->right = x;
+	x->p = y;
+
+	// Update the node values
+	y->height = max(getHeight(y->left), getHeight(y->right)) + 1;
+	x->height = max(getHeight(x->left), y->height) + 1;
+
+	return y;
 }
 
 
