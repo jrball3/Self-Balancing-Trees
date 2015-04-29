@@ -158,11 +158,11 @@ void AVLTree::balanceTree(Node * n){
 		p = n->p;
 	}
 }
-
+/*
 std::pair<int,int> AVLTree::height(Node * n, int l_height, int r_height, bool verbose){	
 	if(n->left != nullptr){
 		l_height++;
-		l_height = height(n->left, l_height, r_height, verbose).first;
+		l_height = height(n->left, l_height, r_height, verbose).first
 	}
 	if(n->right != nullptr){
 		r_height++;
@@ -187,6 +187,7 @@ std::pair<int,int> AVLTree::height(Node * n, int l_height, int r_height, bool ve
 	// Positive balance factor > 1 is too high on the left
 	return std::pair<int,int>(l_height, r_height);
 }
+*/
 
 Node * AVLTree::search(int key){
 	Node * n = root;
@@ -236,8 +237,8 @@ Node * AVLTree::leftRotate(Node* x){
 	x->p = y;
 
 	// Update the node values
-	x->height = max(getHeight(x->left), getHeight(x->right));
-	y->height = max(getHeight(y->right), x->height);
+	x->height = max(getHeight(x->left), getHeight(x->right)) + 1;
+	y->height = max(getHeight(y->right), getHeight(y->left)) + 1;
 	return y;
 }
 
@@ -263,7 +264,7 @@ Node * AVLTree::rightRotate(Node* x){
 
 	// Update the node values
 	y->height = max(getHeight(y->left), getHeight(y->right));
-	x->height = max(getHeight(x->left), y->height);
+	x->height = max(getHeight(x->left), getHeight(x->left)) + 1;
 
 	return y;
 }
