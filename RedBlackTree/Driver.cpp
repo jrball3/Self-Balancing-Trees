@@ -23,6 +23,6 @@ int main(int argc, char * argv[]){
 		RBT.insertNode(input);
 	}
 	RBT.printContents();
-	RBT.showTree();
+//	RBT.showTree();
 	return 0;
 }

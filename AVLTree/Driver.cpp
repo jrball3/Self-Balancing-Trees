@@ -23,13 +23,15 @@ int main(int argc, char * argv[]){
 			int input;
 			ss >> input;
 			AVL.insertNode(input);		
-			AVL.printContents();
-			cout << "The height at the root is " << AVL.getHeight(AVL.getRoot()) << endl;
+
+	/*		cout << "The height at the root is " << AVL.getHeight(AVL.getRoot()) << endl;
 			cout << "The balance factor from the root is " << AVL.getBalanceFactor(AVL.getRoot()) << endl;
 			cout << "The height of the root's left subtree is " << AVL.getHeight(AVL.getRoot()->left) << endl;
 			cout << "The height of the root's right subtree is " << AVL.getHeight(AVL.getRoot()->right) << endl;
+*/
 		}
 	}
+	AVL.printContents();
 
 
 	// This will test a tree up to a height of 2
@@ -42,7 +44,7 @@ int main(int argc, char * argv[]){
 		int direction;
 		cout << "What direction? (left = 1, right = 2): ";
 		cin >> direction;
-		Node * n = AVL.search(rotNode);
+		AVLNode * n = AVL.search(rotNode);
 		if(n == nullptr){
 			cout << "Node is not in the tree" << endl;
 			return 1;
@@ -59,28 +61,28 @@ int main(int argc, char * argv[]){
 			cout << "Invalid entry." << endl;
 			return 1;
 		}
-		Node * rootAfterRotate = AVL.getRoot();
+		AVLNode * rootAfterRotate = AVL.getRoot();
 		cout << "Root = " << rootAfterRotate->key << endl;
-		Node * rightChild = rootAfterRotate->right;
-		Node * leftChild = rootAfterRotate->left;
+		AVLNode * rightChild = rootAfterRotate->right;
+		AVLNode * leftChild = rootAfterRotate->left;
 		if(rightChild != nullptr){
 			cout << "Root->right = " << rootAfterRotate->right->key << endl;
-			Node * rightRightChild = rootAfterRotate->right->right;
+			AVLNode * rightRightChild = rootAfterRotate->right->right;
 			if(rightRightChild != nullptr){
 				cout << "Root->right->right = " << rootAfterRotate->right->right->key << endl;
 			}
-			Node * rightLeftChild = rootAfterRotate->right->left;
+			AVLNode * rightLeftChild = rootAfterRotate->right->left;
 			if(rightLeftChild != nullptr){
 				cout << "Root->right->left = " << rootAfterRotate->right->left->key << endl;
 			}
 		}
 		if(leftChild != nullptr){
 			cout << "Root->left = " << rootAfterRotate->left->key << endl;
-			Node * leftLeftChild = rootAfterRotate->left->left;
+			AVLNode * leftLeftChild = rootAfterRotate->left->left;
 			if(leftLeftChild != nullptr){
 				cout << "Root->left->left = " << rootAfterRotate->left->left->key << endl;
 			}
-			Node * leftRightChild = rootAfterRotate->left->right;
+			AVLNode * leftRightChild = rootAfterRotate->left->right;
 			if(leftRightChild != nullptr){
 				cout << "Root->left->right = " << rootAfterRotate->left->right->key << endl;
 			}

@@ -7,18 +7,21 @@
 using namespace std;
 
 int main(int argc, char const *argv[]) {
+	string outputname;
 	ofstream output;
-	int num_nodes, low_range, up_range, choice;
-
-	output.open("input_file.txt");
+	int num_nodes, low_range, up_range;
+	string choice;
+	cout << "Enter name of output file: ";
+	cin >> outputname;
+	output.open(outputname.c_str());
 	cout << "Enter number of nodes: ";
 	cin >> num_nodes;
-	cout << "Random? (0 for yes, 1 for no) ";
+	cout << "Random? (y/n) ";
 	cin >> choice;
 	cout << "Enter lower range for values (inclusive): ";
 	cin >> low_range;
 	//random numbers within specified range
-	if (choice == 0) {
+	if (choice == "y") {
 		cout << "Enter upper range for values (inclusive): ";
 		cin >> up_range;
 		for (int i = 0; i < num_nodes; i++) {

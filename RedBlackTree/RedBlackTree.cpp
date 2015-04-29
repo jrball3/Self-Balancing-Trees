@@ -4,15 +4,15 @@
 using namespace std;
 
 RedBlackTree::RedBlackTree(){
-	sentinel = new Node();
+	sentinel = new RBTNode();
 	sentinel->left = nullptr;
 	sentinel->right = nullptr;
 	sentinel->color = BLACK;	
 	sentinel->key = INT_MAX;
 	root = sentinel;
 }
-void RedBlackTree::leftRotate(Node* x){
-	Node * y = x->right;
+void RedBlackTree::leftRotate(RBTNode* x){
+	RBTNode * y = x->right;
 	x->right = y->left;
 	if(y->left != sentinel){
 		y->left->p = x;
@@ -30,8 +30,8 @@ void RedBlackTree::leftRotate(Node* x){
 	y->left = x;
 	x->p = y;
 }
-void RedBlackTree::rightRotate(Node *x){
-	Node * y = x->left;
+void RedBlackTree::rightRotate(RBTNode *x){
+	RBTNode * y = x->left;
 	x->left = y->right;
 	if(y->right != sentinel){
 		y->right->p = x;
@@ -49,10 +49,10 @@ void RedBlackTree::rightRotate(Node *x){
 	y->right = x;
 	x->p = y;
 }
-void RedBlackTree::RB_fixup(Node *z){
+void RedBlackTree::RB_fixup(RBTNode *z){
 	while(z->p->color == RED){
 		if(z->p == z->p->p->left){
-			Node * y = z->p->p->right;
+			RBTNode * y = z->p->p->right;
 			if(y->color == RED){
 				z->p->color = BLACK;
 				y->color = BLACK;
@@ -70,7 +70,7 @@ void RedBlackTree::RB_fixup(Node *z){
 			}
 		}
 		else{
-			Node * y = z->p->p->left;
+			RBTNode * y = z->p->p->left;
 			if(y->color == RED){
 				z->p->color = BLACK;
 				y->color = BLACK;
@@ -92,17 +92,25 @@ void RedBlackTree::RB_fixup(Node *z){
 }
 
 void RedBlackTree::insertNode(int key){
-	Node * y = sentinel;
-	Node * x = root;
-	Node * z = new Node();
+	RBTNode * y = sentinel;
+	RBTNode * x = root;
+	RBTNode * z = new RBTNode();
 	z->key = key;
 	while(x != sentinel){
 		y = x;
 		if(z->key < x->key){
 			x = x->left;
 		}
-		else{
+		else if(z->key > x->key){
 			x = x->right;
+		}
+		else{
+			RBTNode * d = search(key);
+			bool sResult = true;
+			if(d == nullptr)
+				sResult = false;
+			std::cout << "Key " << key << " is already in the tree. True? " << sResult << std::endl;
+			return;
 		}
 	}
 	z->p = y;
@@ -120,8 +128,8 @@ void RedBlackTree::insertNode(int key){
 	z->color = RED;
 	RB_fixup(z);
 }
-Node * RedBlackTree::search(int key){
-	Node * n = root;
+RBTNode * RedBlackTree::search(int key){
+	RBTNode * n = root;
 
 	while(n != nullptr && key != n->key){
 		if(key < n->key){
@@ -135,7 +143,7 @@ Node * RedBlackTree::search(int key){
 	return n;
 }
 
-void inorderTreeWalk(Node * x){
+void inorderTreeWalk(RBTNode * x){
 	if(x != nullptr){
 		inorderTreeWalk(x->left);
 		if(x->key != INT_MAX){
@@ -144,12 +152,22 @@ void inorderTreeWalk(Node * x){
 		inorderTreeWalk(x->right);
 	}
 }
+int RedBlackTree::size(RBTNode *n) {
+	if(n == sentinel) {
+		return 0;
+	} 
+	else {
+        	return size(n->left) + size(n->right) + 1;
+	}
+}
 
 void RedBlackTree::printContents(){
 	inorderTreeWalk(root);
-	std::cout << std::endl;	
+	std::cout << std::endl;
+	std::cout << "The number of the nodes in the tree is " << size(root) << std::endl;
 } 
-void preorderTreeWalk(Node * x){
+
+void preorderTreeWalk(RBTNode * x){
 	if(x != nullptr){
 		if(x->key != INT_MAX){
 			std::cout << x->key << " parent: " << x->p->key << " color: RED 1 BLACK 2 " << x->color << endl;

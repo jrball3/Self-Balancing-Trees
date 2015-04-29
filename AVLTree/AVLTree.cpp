@@ -7,7 +7,7 @@ AVLTree::AVLTree(){
 	root = nullptr;
 }
 
-Node * AVLTree::getRoot(){
+AVLNode * AVLTree::getRoot(){
 	return root;
 }
 
@@ -17,11 +17,11 @@ int max(int x, int y){
 
 /*
 void AVLTree::insertNode(int key){
-	Node * n = new Node();
+	AVLNode * n = new Node();
 	n->key = key;
 	
-	Node * y = nullptr;
-	Node * x = root;
+	AVLNode * y = nullptr;
+	AVLNode * x = root;
 
 	while(x != nullptr){
 		y = x;
@@ -60,9 +60,9 @@ void AVLTree::insertNode(int key){
 */
 
 // New recursive insert
-Node * AVLTree::insertHelper(Node * n, Node * p, int key){
+AVLNode * AVLTree::insertHelper(AVLNode * n, AVLNode * p, int key){
 	if(n == nullptr){
-		Node * newNode = new Node(key);
+		AVLNode * newNode = new AVLNode(key);
 		newNode->p = p;
 		return newNode;
 	}
@@ -70,8 +70,16 @@ Node * AVLTree::insertHelper(Node * n, Node * p, int key){
 	if(key < n->key){
 		n->left = insertHelper(n->left, n, key);
 	}
-	else
+	else if(key > n->key){
 		n->right = insertHelper(n->right, n, key);
+	}
+	else{
+		AVLNode * d = search(key);
+		bool sResult = true;
+		if(d == nullptr)
+			sResult = false;
+		std::cout << "Key " << key << " is already in the tree. True? " << sResult << std::endl;
+	}
 
 	n->height = max(getHeight(n->left), getHeight(n->right)) + 1;
 	// if(wentLeft)
@@ -110,23 +118,23 @@ Node * AVLTree::insertHelper(Node * n, Node * p, int key){
 
 void AVLTree::insertNode(int key){
 	root = insertHelper(root, nullptr, key);
-	std::cout << "Inserting " << key << std::endl;
+//	std::cout << "Inserting " << key << std::endl;
 }
 
-int AVLTree::getHeight(Node *n){
+int AVLTree::getHeight(AVLNode *n){
 	if(n == nullptr)
 		return 0;
 	else return n->height;
 }
 
-int AVLTree::getBalanceFactor(Node *n){
+int AVLTree::getBalanceFactor(AVLNode *n){
 	return getHeight(n->left) - getHeight(n->right);
 }
 
 // function that iterates up from a node,
 // checking and balancing as it goes up
-void AVLTree::balanceTree(Node * n){
-	Node * p = n->p;
+void AVLTree::balanceTree(AVLNode * n){
+	AVLNode * p = n->p;
 	while(p != nullptr){
 		// If n's balance factor is 0, then a
 		// rotation will not affect it's height.
@@ -159,7 +167,7 @@ void AVLTree::balanceTree(Node * n){
 	}
 }
 /*
-std::pair<int,int> AVLTree::height(Node * n, int l_height, int r_height, bool verbose){	
+std::pair<int,int> AVLTree::height(AVLNode * n, int l_height, int r_height, bool verbose){	
 	if(n->left != nullptr){
 		l_height++;
 		l_height = height(n->left, l_height, r_height, verbose).first
@@ -189,8 +197,8 @@ std::pair<int,int> AVLTree::height(Node * n, int l_height, int r_height, bool ve
 }
 */
 
-Node * AVLTree::search(int key){
-	Node * n = root;
+AVLNode * AVLTree::search(int key){
+	AVLNode * n = root;
 
 	while(n != nullptr && key != n->key){
 		if(key < n->key){
@@ -203,7 +211,8 @@ Node * AVLTree::search(int key){
 	return n;
 }
 
-void inorderTreeWalk(Node * x){
+// Returns count of nodes walked
+void inorderTreeWalk(AVLNode * x){
 	if(x != nullptr){
 		inorderTreeWalk(x->left);
 		std::cout << x->key << " ";
@@ -211,14 +220,24 @@ void inorderTreeWalk(Node * x){
 	}
 }
 
+int size(AVLNode *n) {
+	if(n == NULL) {
+		return 0;
+	} 
+	else {
+        	return size(n->left) + size(n->right) + 1;
+	}
+}
+
 void AVLTree::printContents(){
 	inorderTreeWalk(root);
 	std::cout << std::endl;
+	std::cout << "The number of the nodes in the tree is " << size(root) << std::endl;
 } 
 
 // Working left rotate
-Node * AVLTree::leftRotate(Node* x){
-	Node * y = x->right;
+AVLNode * AVLTree::leftRotate(AVLNode* x){
+	AVLNode * y = x->right;
 	x->right = y->left;
 	if(y->left != nullptr){
 		y->left->p = x;
@@ -243,8 +262,8 @@ Node * AVLTree::leftRotate(Node* x){
 }
 
 // Working right rotate
-Node * AVLTree::rightRotate(Node* x){
-	Node * y = x->left;
+AVLNode * AVLTree::rightRotate(AVLNode* x){
+	AVLNode * y = x->left;
 	x->left = y->right;
 	if(y->right != nullptr){
 		y->right->p = x;

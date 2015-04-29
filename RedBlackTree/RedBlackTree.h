@@ -1,18 +1,19 @@
-#include "Node.h"
+#include "RBTNode.h"
 
 #define RED 1
 #define BLACK 2
 
 class RedBlackTree{
 	private:
-		Node * root;
-		Node * sentinel;
+		RBTNode * root;
+		RBTNode * sentinel;
 	public:
 		void insertNode(int key);
-		Node * search(int key);
-		void leftRotate(Node * x);
-		void rightRotate(Node * y);
-		void RB_fixup(Node * z);
+		RBTNode * search(int key);
+		void leftRotate(RBTNode * x);
+		void rightRotate(RBTNode * y);
+		void RB_fixup(RBTNode * z);
+		int size(RBTNode *n);
 		void printContents();
 		void showTree();
 		RedBlackTree();
