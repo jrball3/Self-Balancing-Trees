@@ -128,7 +128,7 @@ int heightHelper(Node* n) {
 } 
 
 int AVLTree::getHeightOfSubtree(Node * n){
-	return heightHelper(n) - 1;
+	return heightHelper(n);
 }
 //-------------------------------------
 
