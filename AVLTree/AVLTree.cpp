@@ -80,27 +80,26 @@ Node * AVLTree::insertHelper(Node * n, Node * p, int key){
 	// 	balanceTree(n->right);
 
 	// Check the balance of the current node
-    int balance = getBalanceFactor(n);
  
     // If this node becomes unbalanced, then there are 4 cases
 
     // Left Left Case
-    if (getBalanceFactor(n) > 1 && n->left != nullptr && getBalanceFactor(n->left) > 0)
+    if (getBalanceFactor(n) >= 2 && getBalanceFactor(n->left) > 0)
         return rightRotate(n);
  
     // Right Right Case
-    if (getBalanceFactor(n) < -1 && n->right != nullptr && getBalanceFactor(n->right) < 0)
+    if (getBalanceFactor(n) <= -2 && getBalanceFactor(n->right) < 0)
         return leftRotate(n);
  
     // Left Right Case
-    if (getBalanceFactor(n) > 1 && n->left != nullptr && getBalanceFactor(n->left) < 0)
+    if (getBalanceFactor(n) >= 2 && getBalanceFactor(n->left) < 0)
     {
         n->left =  leftRotate(n->left);
         return rightRotate(n);
     }
  
     // Right Left Case
-    if (getBalanceFactor(n) < -1 && n->right != nullptr && getBalanceFactor(n->right) > 0)
+    if (getBalanceFactor(n) <= -2 && getBalanceFactor(n->right) > 0)
     {
         n->right = rightRotate(n->right);
         return leftRotate(n);
@@ -113,6 +112,7 @@ void AVLTree::insertNode(int key){
 	root = insertHelper(root, nullptr, key);
 }
 //-----------------------
+
 
 // Alternative height gathering functions
 int heightHelper(Node* n) {
