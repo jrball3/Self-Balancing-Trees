@@ -14,5 +14,6 @@ class RedBlackTree{
 		void rightRotate(Node * y);
 		void RB_fixup(Node * z);
 		void printContents();
+		void showTree();
 		RedBlackTree();
 };

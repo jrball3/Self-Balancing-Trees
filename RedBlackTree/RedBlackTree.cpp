@@ -149,4 +149,16 @@ void RedBlackTree::printContents(){
 	inorderTreeWalk(root);
 	std::cout << std::endl;	
 } 
-
+void preorderTreeWalk(Node * x){
+	if(x != nullptr){
+		if(x->key != INT_MAX){
+			std::cout << x->key << " parent: " << x->p->key << " color: RED 1 BLACK 2 " << x->color << endl;
+		}
+		preorderTreeWalk(x->left);
+		preorderTreeWalk(x->right);
+	}
+}
+void RedBlackTree::showTree(){
+	preorderTreeWalk(root);
+	std::cout << std::endl;
+}

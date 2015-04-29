@@ -21,8 +21,8 @@ int main(int argc, char * argv[]){
 		int input;
 		ss >> input;	
 		RBT.insertNode(input);
-		cout << input << endl;		
 	}
 	RBT.printContents();
+	RBT.showTree();
 	return 0;
 }
