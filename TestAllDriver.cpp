@@ -24,10 +24,15 @@ int main(int argc, char * argv[]){
 	while (quit != "y") {
 		string input;
 		string rand_choice;
+		string dupe_choice;
 		cout << "Enter name of input file: ";
 		cin >> input;
 		cout << "Is input file in random order? (y/n)";
 		cin >> rand_choice;
+		if (rand_choice == "y") {
+			cout << "Does the random file contain duplicates? (y/n)";
+			cin >> dupe_choice;
+		}
 		ifstream infile(input);
 		vector<int> inputs;
 			
@@ -164,7 +169,7 @@ int main(int argc, char * argv[]){
 			cout << "Total CPU time for AVL search on " << random_num << " over "<< inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
 			output << "Total CPU time for AVL search on " << random_num << " over "<< inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
 		}
-		
+
 		//==========================RBT Search On Random Num==========================//
 		// gettimeofday(&starttime, 0);
 		// RBT.seach(i);
