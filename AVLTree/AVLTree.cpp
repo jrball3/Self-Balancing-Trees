@@ -84,26 +84,25 @@ Node * AVLTree::insertHelper(Node * n, Node * p, int key){
     // If this node becomes unbalanced, then there are 4 cases
 
     // Left Left Case
-    if (getBalanceFactor(n) >= 2 && getBalanceFactor(n->left) > 0)
-        return rightRotate(n);
- 
-    // Right Right Case
-    if (getBalanceFactor(n) <= -2 && getBalanceFactor(n->right) < 0)
-        return leftRotate(n);
- 
-    // Left Right Case
-    if (getBalanceFactor(n) >= 2 && getBalanceFactor(n->left) < 0)
-    {
-        n->left =  leftRotate(n->left);
-        return rightRotate(n);
+    if (getBalanceFactor(n) >= 2){ //TREE IS LEFT HEAVY
+        if(getBalanceFactor(n->left) < 0){ //LEFT SUBTREE IS RIGHT HEAVU
+		n->left = leftRotate(n->left); //LEFT RIGHT ROTATION, 'DOUBLE RIGHT'
+		return rightRotate(n);
+	}
+	else{
+		return rightRotate(n);
+	}
+    } 
+    else if(getBalanceFactor(n) <= -2){ //TREE IS RIGHT HEAVY
+	if(getBalanceFactor(n->right) > 0){ //RIGHT SUBTREE IS LEFT HEAVU
+		n->right = rightRotate(n->right); //RIGHT LEFT ROTATION, 'DOUBLE RIGHT'
+		return leftRotate(n);
+	}
+	else{
+		return leftRotate(n);
+	}
     }
- 
-    // Right Left Case
-    if (getBalanceFactor(n) <= -2 && getBalanceFactor(n->right) > 0)
-    {
-        n->right = rightRotate(n->right);
-        return leftRotate(n);
-    }
+
 
 	return n;
 }
