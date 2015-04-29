@@ -85,6 +85,5 @@ int main(int argc, char * argv[]){
 	cout << "The balance factor from the root is " << AVL.getBalanceFactor(AVL.getRoot()) << endl;
 	cout << "The height of the root's left subtree is " << AVL.getHeight(AVL.getRoot()->left) << endl;
 	cout << "The height of the root's right subtree is " << AVL.getHeight(AVL.getRoot()->right) << endl;
-	cout << "The height at node 90 is " << AVL.getHeight(AVL.search(90)) << endl;
 	return 0;
 }

@@ -86,7 +86,8 @@ Node * AVLTree::insertHelper(Node * n, Node * p, int key){
     // Left Left Case
     if (getBalanceFactor(n) >= 2){ //TREE IS LEFT HEAVY
         if(getBalanceFactor(n->left) < 0){ //LEFT SUBTREE IS RIGHT HEAVU
-			n->left = leftRotate(n->left); //LEFT RIGHT ROTATION, 'DOUBLE RIGHT'
+			//n->left = 
+			leftRotate(n->left); //LEFT RIGHT ROTATION, 'DOUBLE RIGHT'
 			return rightRotate(n);
 		}
 		else{
@@ -95,7 +96,8 @@ Node * AVLTree::insertHelper(Node * n, Node * p, int key){
     } 
     else if(getBalanceFactor(n) <= -2){ //TREE IS RIGHT HEAVY
 		if(getBalanceFactor(n->right) > 0){ //RIGHT SUBTREE IS LEFT HEAVU
-			n->right = rightRotate(n->right); //RIGHT LEFT ROTATION, 'DOUBLE RIGHT'
+			//n->right = 
+			rightRotate(n->right); //RIGHT LEFT ROTATION, 'DOUBLE RIGHT'
 			return leftRotate(n);
 		}
 		else{
