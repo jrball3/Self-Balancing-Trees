@@ -263,8 +263,8 @@ Node * AVLTree::rightRotate(Node* x){
 	x->p = y;
 
 	// Update the node values
-	y->height = max(getHeight(y->left), getHeight(y->right));
-	x->height = max(getHeight(x->left), getHeight(x->left)) + 1;
+	y->height = max(getHeight(y->left), getHeight(y->right)) + 1;
+	x->height = max(getHeight(x->left), getHeight(x->right)) + 1;
 
 	return y;
 }
