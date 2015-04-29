@@ -18,12 +18,19 @@ int main(int argc, char * argv[]){
 	string line;
 	AVLTree AVL;
 	while(getline(infile, line)){
-		stringstream ss(line);
-		int input;
-		ss >> input;
-		AVL.insertNode(input);		
+		if(line != ""){
+			stringstream ss(line);
+			int input;
+			ss >> input;
+			AVL.insertNode(input);		
+			AVL.printContents();
+			cout << "The height at the root is " << AVL.getHeight(AVL.getRoot()) << endl;
+			cout << "The balance factor from the root is " << AVL.getBalanceFactor(AVL.getRoot()) << endl;
+			cout << "The height of the root's left subtree is " << AVL.getHeight(AVL.getRoot()->left) << endl;
+			cout << "The height of the root's right subtree is " << AVL.getHeight(AVL.getRoot()->right) << endl;
+		}
 	}
-	AVL.printContents();
+
 
 	// This will test a tree up to a height of 2
 	// with 8 nodes (complete tree)
@@ -81,9 +88,6 @@ int main(int argc, char * argv[]){
 		cout << "n now points to " << n->key << endl;
 	}
 	//AVL.height(AVL.getRoot(), 0, 0, false);
-	cout << "The height at the root is " << AVL.getHeight(AVL.getRoot()) << endl;
-	cout << "The balance factor from the root is " << AVL.getBalanceFactor(AVL.getRoot()) << endl;
-	cout << "The height of the root's left subtree is " << AVL.getHeight(AVL.getRoot()->left) << endl;
-	cout << "The height of the root's right subtree is " << AVL.getHeight(AVL.getRoot()->right) << endl;
+
 	return 0;
 }

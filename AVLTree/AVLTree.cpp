@@ -110,6 +110,7 @@ Node * AVLTree::insertHelper(Node * n, Node * p, int key){
 
 void AVLTree::insertNode(int key){
 	root = insertHelper(root, nullptr, key);
+	std::cout << "Inserting " << key << std::endl;
 }
 
 int AVLTree::getHeight(Node *n){
@@ -235,8 +236,8 @@ Node * AVLTree::leftRotate(Node* x){
 	x->p = y;
 
 	// Update the node values
-	x->height = max(getHeight(x->left), getHeight(x->right)) + 1;
-	y->height = max(getHeight(y->right), x->height) + 1;
+	x->height = max(getHeight(x->left), getHeight(x->right));
+	y->height = max(getHeight(y->right), x->height);
 	return y;
 }
 
@@ -261,38 +262,8 @@ Node * AVLTree::rightRotate(Node* x){
 	x->p = y;
 
 	// Update the node values
-	y->height = max(getHeight(y->left), getHeight(y->right)) + 1;
-	x->height = max(getHeight(x->left), y->height) + 1;
+	y->height = max(getHeight(y->left), getHeight(y->right));
+	x->height = max(getHeight(x->left), y->height);
 
 	return y;
 }
-
-
-/* // Root not being reassigned
-void AVLTree::rightRotate(Node *x){
-	Node * y = x->left;
-	x->left = y->right;
-	if(y->right != nullptr){
-		y->right->p = x;
-	}
-	x->p = y->p;
-	if (y->p == nullptr) {
-		root = x;
-	} else if (y == y->p->right) {
-		y->p->right = x;
-	} else {
-		y->p->left = x;
-		y->p = x->p;
-		if(x->p == nullptr){
-			root = y;
-		}
-		else if(x == x->p->right){
-			x->p->right =y;
-		}
-		else{
-			x->p->left = y;
-		}
-		y->right = x;
-		x->p = y;
-	}
-}*/
