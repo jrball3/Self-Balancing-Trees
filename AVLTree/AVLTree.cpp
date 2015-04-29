@@ -86,23 +86,22 @@ Node * AVLTree::insertHelper(Node * n, Node * p, int key){
     // Left Left Case
     if (getBalanceFactor(n) >= 2){ //TREE IS LEFT HEAVY
         if(getBalanceFactor(n->left) < 0){ //LEFT SUBTREE IS RIGHT HEAVU
-		n->left = leftRotate(n->left); //LEFT RIGHT ROTATION, 'DOUBLE RIGHT'
-		return rightRotate(n);
-	}
-	else{
-		return rightRotate(n);
-	}
+			n->left = leftRotate(n->left); //LEFT RIGHT ROTATION, 'DOUBLE RIGHT'
+			return rightRotate(n);
+		}
+		else{
+			return rightRotate(n);
+		}
     } 
     else if(getBalanceFactor(n) <= -2){ //TREE IS RIGHT HEAVY
-	if(getBalanceFactor(n->right) > 0){ //RIGHT SUBTREE IS LEFT HEAVU
-		n->right = rightRotate(n->right); //RIGHT LEFT ROTATION, 'DOUBLE RIGHT'
-		return leftRotate(n);
-	}
-	else{
-		return leftRotate(n);
-	}
+		if(getBalanceFactor(n->right) > 0){ //RIGHT SUBTREE IS LEFT HEAVU
+			n->right = rightRotate(n->right); //RIGHT LEFT ROTATION, 'DOUBLE RIGHT'
+			return leftRotate(n);
+		}
+		else{
+			return leftRotate(n);
+		}
     }
-
 
 	return n;
 }
@@ -110,28 +109,6 @@ Node * AVLTree::insertHelper(Node * n, Node * p, int key){
 void AVLTree::insertNode(int key){
 	root = insertHelper(root, nullptr, key);
 }
-//-----------------------
-
-
-// Alternative height gathering functions
-int heightHelper(Node* n) {
-   if (n == nullptr) 
-       return 0;
-   else{
-       int lHeight = heightHelper(n->left);
-       int rHeight = heightHelper(n->right);
- 
- 		if(lHeight > rHeight)
- 			return (lHeight+1);
- 		else return (rHeight+1);
-   }
-} 
-
-int AVLTree::getHeightOfSubtree(Node * n){
-	return heightHelper(n);
-}
-//-------------------------------------
-
 
 int AVLTree::getHeight(Node *n){
 	if(n == nullptr)

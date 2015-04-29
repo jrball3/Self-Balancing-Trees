@@ -9,5 +9,5 @@ class Node{
 		int right_height;
 		int height;
 		Node(int k):
-			key(k){}
+			key(k), height(1){}
 };
