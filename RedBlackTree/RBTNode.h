@@ -1,3 +1,4 @@
+#include <climits>
 class RBTNode{
 	public:
 		int key;
@@ -9,8 +10,8 @@ class RBTNode{
 			key(0),color(1),left(nullptr),right(nullptr),p(nullptr){}
 		~RBTNode(){
 			if(left != nullptr)
-				delete left;
+				if(left->key != INT_MAX) delete left;
 			if(right != nullptr)
-				delete right;
+				if(right->key != INT_MAX) delete right;
 		}
 };

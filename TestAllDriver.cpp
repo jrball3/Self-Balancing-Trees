@@ -129,20 +129,20 @@ int main(int argc, char * argv[]){
 
 
 		//==========================RBT Search==========================//
-		// gettimeofday(&starttime, 0);
-		// for(auto i : inputs){
-		// 	RBT.search(i);
-		// }
-		// gettimeofday(&endtime, 0);
-		// sec = endtime.tv_sec - starttime.tv_sec;
-		// microsec = (endtime.tv_usec - starttime.tv_usec);
-		// if (rand_choice == "y") {
-		// 	cout << "Total CPU time for RBT searching " << inputs.size() << " randomly ordered nodes: " << sec << "." << abs(microsec) << endl;
-		// 	output << "Total CPU time for RBT searching " << inputs.size() << " randomly ordered nodes: " << sec << "." << abs(microsec) << endl;
-		// } else {
-		// 	cout << "Total CPU time for RBT seraching " << inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
-		// 	output << "Total CPU time for RBT searching " << inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
-		// }
+		gettimeofday(&starttime, 0);
+		for(auto i : inputs){
+			RBT.search(i);
+		}
+		gettimeofday(&endtime, 0);
+		sec = endtime.tv_sec - starttime.tv_sec;
+		microsec = (endtime.tv_usec - starttime.tv_usec);
+		if (rand_choice == "y") {
+			cout << "Total CPU time for RBT searching " << inputs.size() << " randomly ordered nodes: " << sec << "." << abs(microsec) << endl;
+			output << "Total CPU time for RBT searching " << inputs.size() << " randomly ordered nodes: " << sec << "." << abs(microsec) << endl;
+		} else {
+			cout << "Total CPU time for RBT seraching " << inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
+			output << "Total CPU time for RBT searching " << inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
+		}
 
 		//==========================BST Search==========================//
 		gettimeofday(&starttime, 0);
@@ -179,18 +179,18 @@ int main(int argc, char * argv[]){
 		}
 
 		//==========================RBT Search On Random Num==========================//
-		// gettimeofday(&starttime, 0);
-		// RBT.search(random_num);
-		// gettimeofday(&endtime, 0);
-		// sec = endtime.tv_sec - starttime.tv_sec;
-		// microsec = (endtime.tv_usec - starttime.tv_usec);
-		// if (rand_choice == "y") {
-		// 	cout << "Total CPU time for RBT search on " << random_num << " over "<< inputs.size() << " randomly ordered nodes: " << sec << "." << abs(microsec) << endl;
-		// 	output << "Total CPU time for RBT search on " << random_num << " over "<< inputs.size() << " randomly ordered nodes: " << sec << "." << abs(microsec) << endl;
-		// } else {
-		// 	cout << "Total CPU time for RBT search on " << random_num << " over "<< inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
-		// 	output << "Total CPU time for RBT search on " << random_num << " over "<< inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
-		// }
+		gettimeofday(&starttime, 0);
+		RBT.search(random_num);
+		gettimeofday(&endtime, 0);
+		sec = endtime.tv_sec - starttime.tv_sec;
+		microsec = (endtime.tv_usec - starttime.tv_usec);
+		if (rand_choice == "y") {
+			cout << "Total CPU time for RBT search on " << random_num << " over "<< inputs.size() << " randomly ordered nodes: " << sec << "." << abs(microsec) << endl;
+			output << "Total CPU time for RBT search on " << random_num << " over "<< inputs.size() << " randomly ordered nodes: " << sec << "." << abs(microsec) << endl;
+		} else {
+			cout << "Total CPU time for RBT search on " << random_num << " over "<< inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
+			output << "Total CPU time for RBT search on " << random_num << " over "<< inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
+		}
 
 		//==========================BST Search On Random Num==========================//
 		gettimeofday(&starttime, 0);

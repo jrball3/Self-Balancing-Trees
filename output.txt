@@ -1,0 +1,2 @@
+Total CPU time for AVL inserting 1000000 sequentially ordered nodes: 0.3
+Total CPU time for RBT inserting 1000000 sequentially ordered nodes: 0.505489

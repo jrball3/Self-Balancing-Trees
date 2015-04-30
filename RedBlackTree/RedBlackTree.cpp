@@ -15,7 +15,8 @@ RedBlackTree::RedBlackTree(){
 
 RedBlackTree::~RedBlackTree(){
 	if(root != nullptr)
-		delete root;
+		delete root;	
+	delete sentinel;
 }
 
 void RedBlackTree::leftRotate(RBTNode* x){
