@@ -1,6 +1,7 @@
 #include "RedBlackTree.h"
 #include <iostream>
 #include <climits>
+#include <sys/time.h>
 using namespace std;
 
 RedBlackTree::RedBlackTree(){
@@ -38,7 +39,7 @@ void RedBlackTree::rightRotate(RBTNode *x){
 	}
 	y->p = x->p;
 	if (x->p == sentinel) {
-		root = x;
+		root = y;
 	} 
 	else if (x == x->p->right) {
 		x->p->right = y;
@@ -131,7 +132,7 @@ void RedBlackTree::insertNode(int key){
 RBTNode * RedBlackTree::search(int key){
 	RBTNode * n = root;
 
-	while(n != nullptr && key != n->key){
+	while(n != sentinel && key != n->key){
 		if(key < n->key){
 			n = n->left;
 		}
@@ -180,3 +181,33 @@ void RedBlackTree::showTree(){
 	preorderTreeWalk(root);
 	std::cout << std::endl;
 }
+
+long double RedBlackTree::test_search(string file){
+	string line;
+	int num_success;
+	long double avg_ticks = 0;
+	int num_input = 0;
+	struct timeval t1, t2;
+	ifstream infile(file);
+	while(getline(infile, line)){
+		stringstream s(line);
+		int input;
+		num_input++;
+		s >> input;
+		gettimeofday(&t1, NULL);
+		double time1 = t1.tv_sec + (t1.tv_usec/1000000.0);
+		RBTNode * n = this->search(input);
+		gettimeofday(&t1, NULL);
+		double time2 = t1.tv_sec + (t1.tv_usec/1000000.0);
+		cout << time2 - time1 << endl;
+		if(n->key == input){
+			num_success++;
+		}
+	}
+	cout << "avg ticks: " <<  avg_ticks / num_input << endl;
+	return avg_ticks;
+}
+
+
+
+

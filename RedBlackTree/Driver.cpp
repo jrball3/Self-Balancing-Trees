@@ -23,6 +23,8 @@ int main(int argc, char * argv[]){
 		RBT.insertNode(input);
 	}
 	RBT.printContents();
-//	RBT.showTree();
+	RBT.showTree();
+	infile.close();
+//	RBT.test_search(file);
 	return 0;
 }

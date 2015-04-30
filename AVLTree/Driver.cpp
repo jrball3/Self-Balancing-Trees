@@ -32,8 +32,9 @@ int main(int argc, char * argv[]){
 		}
 	}
 	AVL.printContents();
-
-
+	infile.close();
+//	double avg_ticks  = AVL.testInput(file);
+//	cout << "Average number of ticks: " << avg_ticks << endl;
 	// This will test a tree up to a height of 2
 	// with 8 nodes (complete tree)
 	bool testRotations = false;

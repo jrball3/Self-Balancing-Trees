@@ -1,5 +1,8 @@
 #include "AVLNode.h"
 #include <utility>
+#include <string>
+#include <fstream> 
+#include <sstream>
 
 class AVLTree{
 	private:
@@ -18,4 +21,5 @@ class AVLTree{
 		int getHeight(AVLNode *n);
 		int getHeightOfSubtree(AVLNode *n);
 		int getBalanceFactor(AVLNode *n);
+		double testInput(std::string file);
 };

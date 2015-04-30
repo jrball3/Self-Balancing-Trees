@@ -287,3 +287,28 @@ AVLNode * AVLTree::rightRotate(AVLNode* x){
 
 	return y;
 }
+
+
+double AVLTree::testInput(std::string file){
+	std::string line;
+	int num_success;
+	double avg_ticks = 0;
+	int num_input = 0;
+	std::ifstream infile(file);
+	while(getline(infile, line)){
+		std::stringstream s(line);
+		int input;
+		num_input++;
+		s >> input;
+		int t1 = clock();
+		AVLNode * n = search(input);
+		int t2  = clock() - t1;
+		std::cout << t2 << std::endl;
+		avg_ticks += t2;
+		if(n->key == input){
+			num_success++;
+		}
+	}
+	avg_ticks = avg_ticks / num_input;
+	return avg_ticks;
+}
