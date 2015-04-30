@@ -21,4 +21,5 @@ class RedBlackTree{
 		void showTree();
 		long double test_search(std::string infile);
 		RedBlackTree();
+		~RedBlackTree();
 };

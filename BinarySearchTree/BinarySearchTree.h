@@ -9,4 +9,5 @@ class BinarySearchTree{
 		Node * search(int key);
 		void printContents();
 		BinarySearchTree();
+		~BinarySearchTree();
 };

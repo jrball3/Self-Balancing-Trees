@@ -5,6 +5,11 @@ BinarySearchTree::BinarySearchTree(){
 	root = nullptr;
 }
 
+BinarySearchTree::~BinarySearchTree(){
+	if(root != nullptr)
+		delete root;
+}
+
 void BinarySearchTree::insertNode(int key){
 	Node * n = new Node();
 	n->key = key;

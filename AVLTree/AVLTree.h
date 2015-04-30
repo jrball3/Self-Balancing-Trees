@@ -16,6 +16,7 @@ class AVLTree{
 		AVLNode * rightRotate(AVLNode * x);
 		void balanceTree(AVLNode * n);
 		AVLTree();
+		~AVLTree();
 		AVLNode * getRoot();
 		std::pair<int,int> height(AVLNode * n, int l_height, int r_height, bool verbose);
 		int getHeight(AVLNode *n);

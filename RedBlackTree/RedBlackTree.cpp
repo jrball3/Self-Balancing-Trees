@@ -12,6 +12,12 @@ RedBlackTree::RedBlackTree(){
 	sentinel->key = INT_MAX;
 	root = sentinel;
 }
+
+RedBlackTree::~RedBlackTree(){
+	if(root != nullptr)
+		delete root;
+}
+
 void RedBlackTree::leftRotate(RBTNode* x){
 	RBTNode * y = x->right;
 	x->right = y->left;

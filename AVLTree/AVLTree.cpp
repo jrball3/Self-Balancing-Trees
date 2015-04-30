@@ -7,6 +7,11 @@ AVLTree::AVLTree(){
 	root = nullptr;
 }
 
+AVLTree::~AVLTree(){
+	if(root != nullptr)
+		delete root;
+}
+
 AVLNode * AVLTree::getRoot(){
 	return root;
 }
