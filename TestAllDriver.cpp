@@ -46,7 +46,6 @@ int main(int argc, char * argv[]){
 				stringstream ss(line);
 				int input;
 				ss >> input;
-				ss.clear();
 				inputs.push_back(input);
 			}
 		}
@@ -62,9 +61,13 @@ int main(int argc, char * argv[]){
 		
 		//==========================AVL Insert==========================//
 		gettimeofday(&starttime, 0);
-		for(auto i : inputs){
-			AVL.insertNode(i);
-		}
+	//	for(int i = 0; i < inputs.size(); i++){
+	//		cout << "Attempting to insert " << i  << endl;
+	//		AVL->insertNode(inputs[i]);
+	//	}
+		AVL.insertNode(0);
+		AVL.insertNode(1);
+		AVL.insertNode(3);
 		gettimeofday(&endtime, 0);
 		sec = endtime.tv_sec - starttime.tv_sec;
 		microsec = (endtime.tv_usec - starttime.tv_usec);
@@ -77,20 +80,20 @@ int main(int argc, char * argv[]){
 		}
 
 		//==========================RBT Insert==========================//
-		// gettimeofday(&starttime, 0);
-		// for(auto i : inputs){
-		// 	RBT.insertNode(i);
-		// }
-		// gettimeofday(&endtime, 0);
-		// sec = endtime.tv_sec - starttime.tv_sec;
-		// microsec = (endtime.tv_usec - starttime.tv_usec);
-		// if (rand_choice == "y") {
-		// 	cout << "Total CPU time for RBT inserting " << inputs.size() << " randomly ordered nodes: " << sec << "." << abs(microsec) << endl;
-		// 	output << "Total CPU time for RBT inserting " << inputs.size() << " randomly ordered nodes: " << sec << "." << abs(microsec) << endl;
-		// } else {
-		// 	cout << "Total CPU time for RBT inserting " << inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
-		// 	output << "Total CPU time for RBT inserting " << inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
-		// }
+		 gettimeofday(&starttime, 0);
+		 for(auto i : inputs){
+		 	RBT.insertNode(i);
+		 }
+		 gettimeofday(&endtime, 0);
+		 sec = endtime.tv_sec - starttime.tv_sec;
+		 microsec = (endtime.tv_usec - starttime.tv_usec);
+		 if (rand_choice == "y") {
+		 	cout << "Total CPU time for RBT inserting " << inputs.size() << " randomly ordered nodes: " << sec << "." << abs(microsec) << endl;
+		 	output << "Total CPU time for RBT inserting " << inputs.size() << " randomly ordered nodes: " << sec << "." << abs(microsec) << endl;
+		 } else {
+		 	cout << "Total CPU time for RBT inserting " << inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
+		 	output << "Total CPU time for RBT inserting " << inputs.size() << " sequentially ordered nodes: " << sec << "." << abs(microsec) << endl;
+		 }
 
 		//==========================BST Insert==========================//
 		gettimeofday(&starttime, 0);

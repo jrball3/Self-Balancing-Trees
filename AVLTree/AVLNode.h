@@ -4,10 +4,13 @@ class AVLNode{
 		AVLNode * left;
 		AVLNode * right;
 		AVLNode * p;
-		int balance_factor;
-		int left_height;
-		int right_height;
 		int height;
 		AVLNode(int k):
-			key(k), height(1){}
+			key(k), height(1),left(nullptr),right(nullptr),p(nullptr){}
+		~AVLNode(){
+			if(left != nullptr)
+				delete left;
+			if(right != nullptr)
+				delete right;	
+		}
 };

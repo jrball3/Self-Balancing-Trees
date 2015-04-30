@@ -17,4 +17,5 @@ class RedBlackTree{
 		void printContents();
 		void showTree();
 		RedBlackTree();
+		~RedBlackTree();
 };
