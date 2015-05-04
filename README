@@ -1,15 +1,34 @@
-Conor Cunningham
-Jon Ball
-Ellington Kirby
+Conor Cunningham 
+Jon Ball 
+Ellington Kirby 
 
-Note: All trees reject duplicates.
+Note: All trees reject duplicates. 
 
-Usage: all directories are supplied with a makefile.
+Usage: all directories are supplied with a makefile. 
 The generator directory will create text files to run on each graph. 
+cd Generator 
+make 
+./gen 
+will generate an output file based on specifications 
 
-cd Generator
-make
-./gen
-will generate an output file based on specifications
+TEST INDIVIDUAL GRAPHS 
+cd AVLTree 
+make 
+USAGE ./trees <input-file> 
+input file can be accessed by ../Generator/<file name> 
 
+cd RedBlackTree 
+same as above 
 
+cd BinarySearchTree 
+same as above 
+
+TEST ALL GRAPHS AT ONCE 
+cd NewDriver 
+make 
+USAGE: ./test <input_file> 
+
+DEFUNCT 
+cd UniversalDriver 
+make 
+./driver
