@@ -21,7 +21,7 @@ int main(int argc, char * argv[]){
 	BinarySearchTree bst;
 	
 	typedef std::chrono::high_resolution_clock Clock;
-	typedef std::chrono::duration<int,std::nano> nanoseconds_type;
+	typedef std::chrono::duration<int,std::micro> microseconds_type;
 	
 	string filename(argv[1]);
 	string line;
@@ -46,21 +46,21 @@ int main(int argc, char * argv[]){
 		avl.insertNode(test_input[i]);
 	}
 	auto tAVL2 = Clock::now();
-	nanoseconds_type AVL_duration (std::chrono::duration_cast<nanoseconds_type>(tAVL2 - tAVL1));
+	microseconds_type AVL_duration (std::chrono::duration_cast<microseconds_type>(tAVL2 - tAVL1));
 	
 	auto tRBT1 = Clock::now();
 	for(int i = 0; i < test_input.size(); i++){
 		rbt.insertNode(test_input[i]);
 	}
 	auto tRBT2 = Clock::now();
-	nanoseconds_type RBT_duration (std::chrono::duration_cast<nanoseconds_type>(tRBT2 - tRBT1));
+	microseconds_type RBT_duration (std::chrono::duration_cast<microseconds_type>(tRBT2 - tRBT1));
 
 	auto tBST1 = Clock::now();
 	for(int i = 0; i < test_input.size(); i++){
 		bst.insertNode(test_input[i]);
 	}
 	auto tBST2 = Clock::now();
-	nanoseconds_type BST_duration (std::chrono::duration_cast<nanoseconds_type>(tBST2 - tBST1));
+	microseconds_type BST_duration (std::chrono::duration_cast<microseconds_type>(tBST2 - tBST1));
 
 
 	cout << "Displaying AVL Contents..." << endl;
@@ -73,9 +73,9 @@ int main(int argc, char * argv[]){
 	bst.showTree();
 	cout << "============= End BST contents" << endl;
 
-	cout << "AVL insertion time: " << AVL_duration.count() << " nanoseconds" << endl;
-	cout << "RBT insertion time: " << RBT_duration.count() << " nanoseconds" << endl;
-	cout << "BST insertion time: " << BST_duration.count() << " nanoseconds" << endl;
+	cout << "AVL insertion time: " << AVL_duration.count() << " microseconds" << endl;
+	cout << "RBT insertion time: " << RBT_duration.count() << " microseconds" << endl;
+	cout << "BST insertion time: " << BST_duration.count() << " microseconds" << endl;
 
 	cout << "Proceeding to test search \n" << "============================" << endl;
 	
@@ -89,28 +89,28 @@ int main(int argc, char * argv[]){
 		auto tAVL1 = Clock::now();
 		avl.search(target);
 		auto tAVL2 = Clock::now();
-		nanoseconds_type AVL_duration (std::chrono::duration_cast<nanoseconds_type>(tAVL2 - tAVL1));
+		microseconds_type AVL_duration (std::chrono::duration_cast<microseconds_type>(tAVL2 - tAVL1));
 //		cout << "AVL search taking: " << AVL_duration.count() << " nanoseconds" << endl;
 		avl_avg_search += AVL_duration.count();
 
 		auto tRBT1 = Clock::now();
 		rbt.search(target);
 		auto tRBT2 = Clock::now();
-		nanoseconds_type RBT_duration (std::chrono::duration_cast<nanoseconds_type>(tRBT2 - tRBT1));
+		microseconds_type RBT_duration (std::chrono::duration_cast<microseconds_type>(tRBT2 - tRBT1));
 //		cout << "RBT search taking: " << RBT_duration.count() << " nanoseconds" << endl;
 		rbt_avg_search += RBT_duration.count();
 
 		auto tBST1 = Clock::now();
 		bst.search(target);
 		auto tBST2 = Clock::now();
-		nanoseconds_type BST_duration (std::chrono::duration_cast<nanoseconds_type>(tBST2 - tBST1));
+		microseconds_type BST_duration (std::chrono::duration_cast<microseconds_type>(tBST2 - tBST1));
 //		cout << "BST search taking: " << BST_duration.count() << " nanoseconds" << endl;
 		bst_avg_search += BST_duration.count();
 	}
 	
-	cout << "AVL average search time: " << avl_avg_search/input_count << " nanoseconds" << endl;
-	cout << "RBT average search time: " << rbt_avg_search/input_count << " nanoseconds" << endl;
-	cout << "BST average search time: " << bst_avg_search/input_count << " nanoseconds" << endl;
+	cout << "AVL average search time: " << avl_avg_search/input_count << " microseconds" << endl;
+	cout << "RBT average search time: " << rbt_avg_search/input_count << " microseconds" << endl;
+	cout << "BST average search time: " << bst_avg_search/input_count << " microseconds" << endl;
 
 	return 0;
 }
