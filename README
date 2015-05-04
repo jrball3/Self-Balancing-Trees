@@ -2,6 +2,14 @@ Conor Cunningham
 Jon Ball
 Ellington Kirby
 
-All trees reject duplicates.
+Note: All trees reject duplicates.
 
-Usage: to run the main test program 
+Usage: all directories are supplied with a makefile.
+The generator directory will create text files to run on each graph. 
+
+cd Generator
+make
+./gen
+will generate an output file based on specifications
+
+
