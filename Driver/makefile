@@ -1,4 +1,4 @@
-p = test
+p = project
 c = g++ -std=c++0x
 f = -g -O3
 

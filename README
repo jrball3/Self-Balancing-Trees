@@ -11,6 +11,8 @@ make
 ./gen 
 will generate an output file based on specifications 
 
+NOTE: The input files we used to generate test results are provided in the /Driver folder.
+
 TEST INDIVIDUAL GRAPHS 
 cd AVLTree 
 make 
@@ -24,11 +26,6 @@ cd BinarySearchTree
 same as above 
 
 TEST ALL GRAPHS AT ONCE 
-cd NewDriver 
+cd Driver 
 make 
-USAGE: ./test <input_file> 
-
-DEFUNCT 
-cd UniversalDriver 
-make 
-./driver
+USAGE: ./project <input_file> 
