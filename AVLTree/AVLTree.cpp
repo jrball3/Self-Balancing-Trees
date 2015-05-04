@@ -127,11 +127,11 @@ void AVLTree::printContents(){
 
 void preorderTreeWalk(AVLNode * x){
 	if(x != nullptr){
-		if(x != nullptr){
+		if(x->p != nullptr){
 			std::cout << x->key << " parent: " << x->p->key << std::endl;
 		}
 		preorderTreeWalk(x->left);
-		preorderTreeWalk(x->right);
+		preorderTreeWalk(x->right);		
 	}
 }
 void AVLTree::showTree(){

@@ -1,6 +1,6 @@
 p = test
 c = g++ -std=c++0x
-f = -g
+f = -g -O3
 
 all: Driver.o RedBlackTree.o AVLTree.o BinarySearchTree.o
 	$c $f -o $p Driver.o RedBlackTree.o AVLTree.o BinarySearchTree.o

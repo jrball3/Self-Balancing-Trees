@@ -65,3 +65,17 @@ void BinarySearchTree::printContents(){
 	inorderTreeWalk(root);
 	std::cout << std::endl;	
 } 
+
+void preorderTreeWalk(Node * x){
+	if(x != nullptr){
+		if(x->parent != nullptr){
+			std::cout << x->key << " parent: " << x->parent->key << std::endl;
+		}
+		preorderTreeWalk(x->left);
+		preorderTreeWalk(x->right);		
+	}
+}
+void BinarySearchTree::showTree(){
+	preorderTreeWalk(root);
+	std::cout << std::endl;
+}

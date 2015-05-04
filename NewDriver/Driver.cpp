@@ -23,10 +23,6 @@ int main(int argc, char * argv[]){
 	typedef std::chrono::high_resolution_clock Clock;
 	typedef std::chrono::duration<int,std::nano> nanoseconds_type;
 	
-//	vector<std::chrono::time_point> AVL_times;
-//	vector<std::chrono::time_point> RBT_times;
-//	vector<std::chrono::time_point> BST_times;
-	
 	string filename(argv[1]);
 	string line;
 	int input_count = 0;	
@@ -34,50 +30,52 @@ int main(int argc, char * argv[]){
 	double AVL_avg_time;
 	double RBT_avg_time;
 	double BST_avg_time;
-
+	std::vector<int> test_input;
 	ifstream infile(filename);
 	while(getline(infile, line)){
 		stringstream ss(line);
 		int input = 0;
 		ss >> input;		
 		input_count++;
-
-		auto tAVL1 = Clock::now();
-		avl.insertNode(input);
-		auto tAVL2 = Clock::now();
-		nanoseconds_type AVL_duration (std::chrono::duration_cast<nanoseconds_type>(tAVL2 - tAVL1));
-	//	cout << "AVL insert taking: " << AVL_duration.count() << " nanoseconds" << endl;
-		AVL_avg_time += AVL_duration.count();
-
-		auto tRBT1 = Clock::now();
-		rbt.insertNode(input);
-		auto tRBT2 = Clock::now();
-		nanoseconds_type RBT_duration (std::chrono::duration_cast<nanoseconds_type>(tRBT2 - tRBT1));
-	//	cout << "RBT insert taking: " << RBT_duration.count() << " nanoseconds" << endl;
-		RBT_avg_time += RBT_duration.count();
-
-		auto tBST1 = Clock::now();
-		bst.insertNode(input);
-		auto tBST2 = Clock::now();
-		nanoseconds_type BST_duration (std::chrono::duration_cast<nanoseconds_type>(tBST2 - tBST1));
-	//	cout << "BST insert taking: " << BST_duration.count() << " nanoseconds" << endl;
-		BST_avg_time += BST_duration.count();
-
+		test_input.push_back(input);
 	}
+	infile.close();
+
+	auto tAVL1 = Clock::now();
+	for(int i = 0; i < test_input.size(); i++){
+		avl.insertNode(test_input[i]);
+	}
+	auto tAVL2 = Clock::now();
+	nanoseconds_type AVL_duration (std::chrono::duration_cast<nanoseconds_type>(tAVL2 - tAVL1));
+	
+	auto tRBT1 = Clock::now();
+	for(int i = 0; i < test_input.size(); i++){
+		rbt.insertNode(test_input[i]);
+	}
+	auto tRBT2 = Clock::now();
+	nanoseconds_type RBT_duration (std::chrono::duration_cast<nanoseconds_type>(tRBT2 - tRBT1));
+
+	auto tBST1 = Clock::now();
+	for(int i = 0; i < test_input.size(); i++){
+		bst.insertNode(test_input[i]);
+	}
+	auto tBST2 = Clock::now();
+	nanoseconds_type BST_duration (std::chrono::duration_cast<nanoseconds_type>(tBST2 - tBST1));
+
 
 	cout << "Displaying AVL Contents..." << endl;
 	avl.showTree();
 	cout << "============= End AVL contents" << endl;
 	cout << "Displaying RBT Contents..." << endl;
 	rbt.showTree();
-	cout << "============= End AVL contents" << endl;
+	cout << "============= End RBT contents" << endl;
 	cout << "Displaying BST Contents..." << endl;
-	bst.printContents();
-	cout << "============= End AVL contents" << endl;
+	bst.showTree();
+	cout << "============= End BST contents" << endl;
 
-	cout << "AVL average insertion time: " << AVL_avg_time/input_count << " nanoseconds" << endl;
-	cout << "RBT average insertion time: " << RBT_avg_time/input_count << " nanoseconds" << endl;
-	cout << "BST average insertion time: " << BST_avg_time/input_count << " nanoseconds" << endl;
+	cout << "AVL insertion time: " << AVL_duration.count() << " nanoseconds" << endl;
+	cout << "RBT insertion time: " << RBT_duration.count() << " nanoseconds" << endl;
+	cout << "BST insertion time: " << BST_duration.count() << " nanoseconds" << endl;
 
 	cout << "Proceeding to test search \n" << "============================" << endl;
 	
