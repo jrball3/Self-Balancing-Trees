@@ -23,4 +23,5 @@ class AVLTree{
 		int getHeightOfSubtree(AVLNode *n);
 		int getBalanceFactor(AVLNode *n);
 		double testInput(std::string file);
+		void showTree();
 };

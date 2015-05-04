@@ -66,10 +66,10 @@ int main(int argc, char * argv[]){
 	}
 
 	cout << "Displaying AVL Contents..." << endl;
-	avl.printContents();
+	avl.showTree();
 	cout << "============= End AVL contents" << endl;
 	cout << "Displaying RBT Contents..." << endl;
-	rbt.printContents();
+	rbt.showTree();
 	cout << "============= End AVL contents" << endl;
 	cout << "Displaying BST Contents..." << endl;
 	bst.printContents();

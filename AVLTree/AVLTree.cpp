@@ -20,50 +20,6 @@ int max(int x, int y){
 	return (x > y) ? x : y;
 }
 
-/*
-void AVLTree::insertNode(int key){
-	AVLNode * n = new Node();
-	n->key = key;
-	
-	AVLNode * y = nullptr;
-	AVLNode * x = root;
-
-	while(x != nullptr){
-		y = x;
-		if(n->key < x->key){
-			x = x->left;
-		}
-		else{
-			x = x->right;
-		}
-	}
-	n->p = y;
-	if(y == nullptr){
-		root = n;
-	}
-	else if(n->key < y->key){
-		y->left = n;
-	}
-	else{
-		y->right = n;
-	}
-
-	// Update the node values
-	//height(root, 0, 0, true);
-	// if(n == root->left || n == root->right)
-		// n->height = 1;
-	// else
-		// n->height = max(getHeight(n->right), getHeight(n->left));
-	if(n->p != nullptr)
-		n->height = n->p->height + 1;
-	else
-		n->height = 0;
-
-	// Call fixup function to balance the tree
-	//balanceTree(n);
-}
-*/
-
 // New recursive insert
 AVLNode * AVLTree::insertHelper(AVLNode * n, AVLNode * p, int key){
 	if(n == nullptr){
@@ -87,11 +43,6 @@ AVLNode * AVLTree::insertHelper(AVLNode * n, AVLNode * p, int key){
 	}
 
 	n->height = max(getHeight(n->left), getHeight(n->right)) + 1;
-	// if(wentLeft)
-	// 	balanceTree(n->left);
-	// else
-	// 	balanceTree(n->right);
-
 	// Check the balance of the current node
  
     // If this node becomes unbalanced, then there are 4 cases
@@ -136,72 +87,6 @@ int AVLTree::getBalanceFactor(AVLNode *n){
 	return getHeight(n->left) - getHeight(n->right);
 }
 
-// function that iterates up from a node,
-// checking and balancing as it goes up
-void AVLTree::balanceTree(AVLNode * n){
-	AVLNode * p = n->p;
-	while(p != nullptr){
-		// If n's balance factor is 0, then a
-		// rotation will not affect it's height.
-		// Skip this iteration
-		if(getBalanceFactor(n) != 0){
-			if(getBalanceFactor(p) > 1){
-				if(getBalanceFactor(n) < 0){
-					// left right case
-					leftRotate(n);
-				}
-				// Left left case
-				rightRotate(p);
-			}
-			else if(getBalanceFactor(p) < -1){
-				// If n's balance factor is 0, then a
-				// rotation will not affect it's height.
-				// Skip this iteration
-				if(getBalanceFactor(n) > 0){
-					// Right left case
-					rightRotate(n);
-				}
-				// Right right case
-				leftRotate(p);
-			}
-		}
-		
-		// Move up a node
-		n = p;
-		p = n->p;
-	}
-}
-/*
-std::pair<int,int> AVLTree::height(AVLNode * n, int l_height, int r_height, bool verbose){	
-	if(n->left != nullptr){
-		l_height++;
-		l_height = height(n->left, l_height, r_height, verbose).first
-	}
-	if(n->right != nullptr){
-		r_height++;
-		r_height = height(n->right, l_height, r_height, verbose).second;			
-	}
-	if(n->right == nullptr && n->left == nullptr){
-		n->left_height = 0;
-		n->right_height = 0;
-		n->balance_factor = 0;
-		return std::pair<int,int>(l_height, r_height);
-	}
-	n->right_height = r_height;
-	n->left_height = l_height;
-	n->balance_factor = l_height - r_height;
-	if(verbose){
-		if(n->balance_factor < -1 || n->balance_factor > 1){
-			std::cerr << "WARNING: TREE UNBALANCED(" 
-				<< n->balance_factor << ") AT NODE WITH KEY " << n->key << std::endl;
-		}
-	}
-	// Negative balance factor > 1 is too high on the right
-	// Positive balance factor > 1 is too high on the left
-	return std::pair<int,int>(l_height, r_height);
-}
-*/
-
 AVLNode * AVLTree::search(int key){
 	AVLNode * n = root;
 
@@ -239,6 +124,21 @@ void AVLTree::printContents(){
 	std::cout << std::endl;
 	std::cout << "The number of the nodes in the tree is " << size(root) << std::endl;
 } 
+
+void preorderTreeWalk(AVLNode * x){
+	if(x != nullptr){
+		if(x != nullptr){
+			std::cout << x->key << " parent: " << x->p->key << std::endl;
+		}
+		preorderTreeWalk(x->left);
+		preorderTreeWalk(x->right);
+	}
+}
+void AVLTree::showTree(){
+	preorderTreeWalk(root);
+	std::cout << std::endl;
+}
+	
 
 // Working left rotate
 AVLNode * AVLTree::leftRotate(AVLNode* x){
