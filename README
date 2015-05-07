@@ -2,7 +2,7 @@ Conor Cunningham
 Jon Ball 
 Ellington Kirby 
 
-Note: All trees reject duplicates. 
+Note: All trees reject duplicates. Delete has not been implemented on the AVL or Red-Black trees.
 
 Usage: all directories are supplied with a makefile. 
 The generator directory will create text files to run on each graph. 
